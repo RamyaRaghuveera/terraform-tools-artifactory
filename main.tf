@@ -185,7 +185,7 @@ resource "null_resource" "wait-for-config-job" {
   count = var.mode != "setup" ? 1 : 0
 
   provisioner "local-exec" {
-    command = "kubectl wait -n ${var.releases_namespace} --for=condition=complete --timeout=60m job -l app=artifactory"
+    command = "kubectl wait -n ${var.releases_namespace} --for=condition=complete --timeout=120m job -l app=artifactory"
 
     environment = {
       KUBECONFIG = var.cluster_config_file
